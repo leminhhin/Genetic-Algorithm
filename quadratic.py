@@ -1,8 +1,8 @@
 import numpy as np
 
 class QuadraticEqua:
-	def __init__(self,a,b,c, LOW_BOUND = -1000, UP_BOUND = 1001, POPULATION_SIZE = 100, 
-		CROSSOVER_P = 0.7, MUTATION_P = 0.3, DISTRIBUTION_INDEX = 15, TOURNAMENT_SIZE = 2):
+	def __init__(self,a,b,c, LOW_BOUND = -10000, UP_BOUND = 10001, POPULATION_SIZE = 100, 
+		CROSSOVER_P = 0.8, MUTATION_P = 0.4, DISTRIBUTION_INDEX = 10, TOURNAMENT_SIZE = 2):
 		self.a = a
 		self.b = b
 		self.c = c
@@ -27,6 +27,7 @@ class QuadraticEqua:
 
 	def initialize_population(self):
 		self.population = np.array([np.random.uniform(self.LB, self.UB) for i in range(self.POP_SIZE)])
+		# self.population = np.random.randint(self.LB, self.UB, self.POP_SIZE)
 		
 
 	def calc_fitness_score(self, x):
@@ -120,10 +121,10 @@ def inp():
 
 def main():
 	a,b,c = inp()
-	TERMINATION = 50
+	TERMINATION = 20
 	solver = QuadraticEqua(a, b, c)
 	solver.initialize_population()
-
+	# print(solver.get_population())
 	for i in range(TERMINATION):
 		population = solver.get_population()
 		scores = solver.evaluate(population)
@@ -136,7 +137,9 @@ def main():
 
 
 	print(f'Problem: {a}x^2 + {b}x + {c} = 0: ')
-	print('Solution: ', solver.get_N_solutions(2))
+	print('Best 4 solutions: ', solver.get_N_solutions(4))
+
+
 
 if __name__ == '__main__':
 	main()
