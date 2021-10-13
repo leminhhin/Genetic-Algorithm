@@ -1,3 +1,3 @@
 # Genetic-Algorithm-Real-coded
 
-Solve quadratic equation using genetic algorithm real-
+Solve quadratic equation using genetic algorithm real-coded
